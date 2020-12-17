@@ -1,0 +1,78 @@
+/* reset browser styles */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  border: 0;
+  font-size: 100%; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+*, ::after, ::before, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+:root {
+  margin: 0;
+  padding: 0; }
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+
+/* end reset browser styles */
+.container {
+  position: absolute;
+  top: 25%;
+  right: 30%;
+  font-weight: 400;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .container > div {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    margin-right: 40px; }
+    .container > div:not(:nth-child(3)):after {
+      content: ":";
+      padding-left: 30px; }
+  .container > input[type=button] {
+    letter-spacing: 2px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    border-top: 2px solid #bb368f;
+    border-bottom: 2px solid #bb368f;
+    cursor: pointer;
+    font-size: 4rem;
+    -webkit-transition: color .8s ease-in-out;
+    transition: color .8s ease-in-out; }
+    .container > input[type=button]:hover {
+      color: #53b1c9;
+      -webkit-transition: color .8s ease-in-out;
+      transition: color .8s ease-in-out; }
+
+/*# sourceMappingURL=index.css.map */
