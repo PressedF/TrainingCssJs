@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .random{
+            position: absolute;
+            left: 20%;
+            top: 10%;
+
+            display: inline-block;
+            border-radius: 20px;
+            border: 2px black solid;
+
+            padding: 100px;
+            z-index: 100;
+        }
+
+        .random > h1, .random > h3{
+            text-align: center;
+        }
+        .random > h1{
+            font-size: 2rem;
+        }
+
+        .random_Party{
+            display: flex;
+            align-items: center;
+            flex-flow: column nowrap;
+        }
+
+
+        .random_Party > input, .random_Party > button{
+            display: block;
+
+            background: transparent;
+            text-align: center;
+        }
+
+        .random_Party > input{
+            border-radius: 15px;
+            border: .7px solid rgb(128, 96, 96);
+
+            font-size: 3rem;
+            margin-bottom: 10px;
+
+            cursor: alias;
+        }
+
+        .random_Party > button{
+            border: 2px solid black;
+            border-radius: 10px 20px 0 0;
+
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .random_Party > .button_1{
+            content: 'ОК';
+        }
+
+        .random_Party > .button_2{
+            content: 'Загадать';
+        }
+    </style>
+
+    <main class="random">
+        <h1>Это рандом</h1>
+        <h3>Угадайте число от 1 до 100</h3>
+        <div class="random_Party" id="random_Party">
+            <input type="text"
+            onclick="input_ToClear(this)"
+            value="Here text is writing"
+            id="input">
+            <button class="button_1" onclick="button_Clicked(this)">Загадать</button>
+        </div>
+    </main>
+
+
+    <script>
+
+        let changer = {
+            number: null,
+            numberIsRandom: null,
+
+            toChangeNumbers: function(number){
+                this.number = +number || 1;
+            },
+
+            input_OnClick_Clear: function(input){
+                if(input == null) throw new console.error("It's null");
+                input.value = "";
+            },
+
+            random: function(){
+                this.numberIsRandom = Math.floor(Math.random() * 99) + 1;
+            },
+
+            rnd: function(item){
+                if(this.number == this.numberIsRandom)
+                    this.colorUse(item, 'green');
+                else
+                    this.colorUse(item, 'red');
+            },
+
+            colorUse: function(item, color){
+                item.style.backgroundColor = color;
+            },
+        };
+
+        function input_ToClear(item){
+            changer.input_OnClick_Clear(item);
+        }
+
+        function button_Clicked(button){
+            let inp = document.getElementById('input');
+            let party = document.querySelector('#random_Party');
+
+            changer.toChangeNumbers(inp.value);
+
+            let toAddRemove = (item, add, remove) => {
+                item.classList.add(add);
+                item.classList.remove(remove);
+
+                console.log("Completed and number is " +  changer.numberIsRandom);
+            }
+            
+            let toChange = (item, stringContent) => {
+                item.innerHTML = stringContent;
+            }
+
+            if(button.innerHTML == "ОК"){
+                toAddRemove(button, 'button_2', 'button_1');
+                toChange(button, 'Загадать'); 
+                
+                changer.rnd(inp);
+            }
+            else{
+                changer.random();
+                changer.colorUse(inp, 'white');
+
+                toAddRemove(button, 'button_1', 'button_2');
+                toChange(button, 'ОК');
+            }
+        }
+
+    </script>
+</body>
+</html>
