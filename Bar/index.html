@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <header>
+        <img class="activator" id="activation"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAI0lEQVRIiWNgGAWjgBbgP4V44C0YBQTBaCSPADAayaNgpAEAXpZfoUxJRIUAAAAASUVORK5CYII="/>
+        <nav>
+            <ul>
+                <li><a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAr0lEQVRIie2U0Q2DMAxE3wgdpSMwQkdghG7SEToCI2SEjMAIjEA/aKTDQolJkOCDkywhEd+Lzwi4dUU9gQjMlRWALgcIDeapxhxAD/bOqQFewCS9LsAMfArGj/8Z21cEvOU5suzGSvc1mZ4iwBrYyDQSvcAuQNKXdWQaycASU67fJR1fI/FccPViq5JSZIHtnTQDPKqO6DBA6xTnA7wGuYq1Zh5AYMc/rOVrunUR/QAlTph40+PCMAAAAABJRU5ErkJggg=="/></a></li>
+                <li><a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABCUlEQVRIid1UURWDMAw8CZWABCRUAhIqAQk4QEIlIAEJSKiEStg+lm55IYW0+9ruvTweEO6uR1rg3+EAeAARwAEgUyUAG4DwDbkn0sdNpR6hxUAsa7WSzx3kpeId+cSaN7qPdF+yT6JnpGt5Nl0J8Mz5kh0Vx1BZdba4L+6skLEGrSmKJt8g4CzmdtZwNJBr36sxyZ/XCpnACZm93DsE+CSpAnyCqpNwAZ5A0hpW4WBuIA8w/OQypjyqOxFH5Pyb6pgCr6VlnHdnxHmjbQpxiUf2vuHZKhwRZ+hnjIzUHO3CXFv6uk7U4u4goaD0yONhxUU0GkZ8Rk9zVgRyxYAZE4lJDETc5Pr38ATUrKmF2+6xDwAAAABJRU5ErkJggg=="/></a></li>
+                <li><a href="#" ><img id="changed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAzklEQVRIid2UTRHDIBCFPwlIiAQkREIlRAIScBAJSIiESIiESkACPUCmTCf8BXpo38xeOLyPZd8C/y4BKGD/hvkCWMAB20hjAZhgfNY6EqA/zF04G6KZ97MMBwjguDAfNoNHwtzhuxK9AJUBOHyqurQVABaYegDPAsDRuXA1AIcPwnQHsFYC4ug2gXQjII6wieogsfnyJuCq5lQXpSTVVDYIgvphp6IscwDIb3SpVMn8lGzsxIaLNctUmBs6/ymB/4c0foA7PoYLFe/9+3oBtrG+0tC0XO0AAAAASUVORK5CYII=" ></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <script>
+        let d = document;
+
+        let query_activation = d.getElementById('activation');
+        let query_nav = d.querySelector('nav');
+        let query_img = d.querySelectorAll('a > img');
+
+        let img_light = d.getElementById('changed');
+
+        let defaults = {
+            color: query_activation.style.backgroundColor,
+            borderRadius: query_activation.style.borderRadius,
+
+            opacity: query_img[0].style.opacity,
+            clipPath: query_nav.style.clipPath,
+
+            MoonSun: img_light.src,
+        };
+
+        let toggle = false;
+
+        query_activation.addEventListener('click', () => {
+            toggle = !toggle;
+
+            function toDefaultForImg(color, radius){
+                let $color = query_activation.style.backgroundColor;
+                let $radius = query_activation.style.borderRadius;
+
+                if(toggle){
+                    $color = color;
+                    $radius = radius;
+                } else{
+                    $color = defaults.color;
+                    $radius = defaults.borderRadius;
+                }
+
+                query_activation.style.backgroundColor = $color;
+                query_activation.style.borderRadius = $radius;
+            }
+            
+            function toDefaultForImgs(clipPath, opacity, isToggle){
+                let $query_nav = query_nav;
+                let $query_img = query_img;
+
+
+                if(isToggle){
+                    $query_nav.style.clipPath = clipPath;
+                    for(let i of $query_img) i.style.opacity = opacity;
+                }
+                else{
+                    $query_nav.style.clipPath = defaults.clipPath;
+                    for(let i of $query_img) i.style.opacity = defaults.opacity;
+
+                    query_activation.style.setProperty('transition', 'border-radius .66s ease-out');
+                }
+
+                query_nav = $query_nav;
+                query_img = $query_img;
+            }
+
+            query_nav.style.setProperty('transition', 'clip-path 1.7s ease-in-out');
+            for(let i of query_img) i.style.setProperty('transition', 'opacity 1.9s ease-in-out');
+
+            toDefaultForImg('#805ad5', '5em 0 0 5em');
+            toDefaultForImgs('ellipse(100% 100% at 50% 50%)', 1, toggle);
+
+            console.log('yes');
+        });
+
+        var i = 0;
+        img_light.addEventListener('click', () => {
+            let body = d.querySelector('body');
+            i++;
+            if(i > 1){
+                i = 0;
+                img_light.src = defaults.MoonSun;
+
+                body.style.backgroundColor = 'rgb(26, 24, 24)';
+                return;
+            }
+            img_light.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAzklEQVRIieWVUQ3DMAxEH4RAGIRCCIRBGIRCKINBKYRAGIRCKITsY4niSWl6UaWp1U7yR6X4nuPILvybYorzAybAdQBcypHNI/DagNTM55TzVAAumUdgFM6PpqCbAsiQkXIDD4RksqSKB3N+6jGvVbhS+m9DuWFTvmGewx8B5Mdrxaya2aSsRQCsOx6/A9SktCioZjV5AXA/AoAy2bWQJrcmBzzM98CnFbnnge/K7VBK5rn3vatCgvTuFru7JgUA27tlb13LbdrSdf5o19Eb/Vt7ez1zlNwAAAAASUVORK5CYII=';
+            body.style.backgroundColor = '#fff';
+        }); 
+    </script>
+</body>
+</html>
