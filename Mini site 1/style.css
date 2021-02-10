@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, .7), 
+    rgba(0, 0, 0, .7)), url('./Desert Webpage Img/background.png');
+    background-position: center;
+    background-size: cover;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+    
+    overflow: hidden;
+}
+
+.navbar{
+    height: 12%;
+    display: flex;
+    align-items: center;
+    
+    padding-top: 20px;
+}
+
+.logo{
+    width: 50px;
+    cursor: pointer;
+}
+
+.menu-icon{
+    width: 30px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+nav{
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+    
+    position: relative;
+    
+    padding-bottom: 3px;
+}
+
+nav ul li::before{
+    content: '';
+    
+    width: 100%;
+    height: 4px;
+    
+    position: absolute;
+    bottom: 0;
+    
+    background-color: red;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+.row{
+    display: flex;
+    align-items: center;
+    
+    height: 100%;
+    justify-content: center;
+}
+
+.col1{
+    flex-basis: 50%;
+}
+
+.col2{
+    display: grid;
+    
+    flex-basis:  auto;
+    grid-template-columns: repeat(2, .6fr);
+
+}
+
+h1{
+    color: #fff;
+    font-size: 100px;
+}
+
+p{
+    color: #fff;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+button{
+    width: 180px;
+    color: #000;
+    font-size: 12px;
+    padding: 12px 0;
+    background-color: #fff;
+    
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 30px;
+    
+    cursor: pointer;
+    font-size: 1.3em;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+button::after{
+    content: '';
+    
+    border-bottom-right-radius: 100px;
+    background-color: red;
+    
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    transition: opacity .6s ease-in-out;
+    opacity: 0;
+}
+
+button:hover::after{
+    opacity: 1;
+    transition: opacity .6s ease-in-out;
+}
+
+.card{
+    width: 200px;
+    height: 230px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-position: center;
+    background-size: cover;
+    
+    transition: transform .6s ease-in-out;
+}
+
+.card:hover{
+    transform: translateY(-6px);
+    
+    transition: transform 1s ease-out;
+}
+
+.card1{
+    background-image: url('./Desert Webpage Img/pic-1.png');
+}
+
+.card2{
+    background-image: url('./Desert Webpage Img/pic-2.png');
+}
+
+.card3{
+    background-image: url('./Desert Webpage Img/pic-3.png');
+}
+
+.card4{
+    background-image: url('./Desert Webpage Img/pic-4.png');
+}
